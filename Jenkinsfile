@@ -25,21 +25,20 @@ pipeline {
                 bat 'npm test'
             }
         }
-        stage('Deploy') {
+                stage('Deploy') {
             steps {
                 echo 'Copying tested application files into deployment/.'
                 bat '''
                     if not exist deployment mkdir deployment
-                    copy /Y index.html deployment\index.html
-                    copy /Y styles.css deployment\styles.css
-                    copy /Y app.js deployment\app.js
-                    copy /Y server.js deployment\server.js
-                    copy /Y package.json deployment\package.json
+                    copy /Y index.html deployment/index.html
+                    copy /Y styles.css deployment/styles.css
+                    copy /Y app.js deployment/app.js
+                    copy /Y server.js deployment/server.js
+                    copy /Y package.json deployment/package.json
                 '''
                 echo 'Deployment files copied successfully.'
             }
         }
-    }
     post {
         success { echo 'SUCCESS: CampusFlow passed build and tests and was deployed.' }
         failure { echo 'FAILURE: Inspect the stage logs and fix the reported issue.' }
