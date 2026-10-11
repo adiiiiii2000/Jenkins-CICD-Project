@@ -30,18 +30,23 @@ pipeline {
             }
         }
 
+        
         stage('Deploy') {
             steps {
                 echo 'Preparing deployment directory.'
+
                 bat 'if not exist deployment mkdir deployment'
-                bat 'copy /Y index.html deployment/index.html'
-                bat 'copy /Y styles.css deployment/styles.css'
-                bat 'copy /Y app.js deployment/app.js'
-                bat 'copy /Y server.js deployment/server.js'
-                bat 'copy /Y package.json deployment/package.json'
+
+                bat 'copy /Y index.html deployment\\index.html'
+                bat 'copy /Y styles.css deployment\\styles.css'
+                bat 'copy /Y app.js deployment\\app.js'
+                bat 'copy /Y server.js deployment\\server.js'
+                bat 'copy /Y package.json deployment\\package.json'
+
                 echo 'Deployment files copied successfully.'
             }
         }
+
     }
 
     post {
